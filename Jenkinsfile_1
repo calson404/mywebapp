@@ -7,7 +7,7 @@ pipeline {
         stage('GitClone') {
             steps {
                 echo 'Cloning the latest application version'
-                git branch: 'main', url: 'https://github.com/dobretechproject/maven-web-pro1'
+                git branch: 'main', url: 'https://github.com/calson404/maven-web-pro1'
             }
         }
         stage('Test+Build') {
