@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                git branch: 'main', url: 'https://github.com/dobretechproject/maven-web-pro1.git'
+                git branch: 'main', url: 'https://github.com/calson404/maven-web-pro1.git'
             }
         }
 
