@@ -15,7 +15,7 @@
   tasks:
     - name: Install Java
       apt:
-        name: openjdk-17-jdk
+        name: openjdk-21-jdk
         state: present
         update_cache: yes
 
@@ -125,7 +125,7 @@
           [Service]
           Type=forking
 
-          Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          Environment=JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
           Environment=CATALINA_PID={{ tomcat_symlink }}/temp/tomcat.pid
           Environment=CATALINA_HOME={{ tomcat_symlink }}
           Environment=CATALINA_BASE={{ tomcat_symlink }}
