@@ -16,8 +16,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <sonar.token>${SSONARQUBE_TOKEN}</sonar.token>
-        <sonar.host.url>http://18.220.241.168:9000/</sonar.host.url>
+        <sonar.token>sqa_d89c33b24c318a91a1b64cf907a5963aead12cb4</sonar.token>
+        <sonar.host.url>http://16.16.204.142:9000/</sonar.host.url>
         <build.version>1.0</build.version> <!-- Default version if not overridden -->
     </properties>
 
@@ -64,11 +64,11 @@
     <distributionManagement>
         <repository>
             <id>nexus</id>
-            <url>http://3.17.66.140:8081/repository/dobretech-repo/</url>
+            <url>http://51.20.98.56:8081/repository/dobretech-repo/</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
-            <url>http://3.17.66.140.26:8081/repository/dobretech-repo-snap/</url>
+            <url>http://51.20.98.56:8081/repository/dobretech-snap/</url>
         </snapshotRepository>
     </distributionManagement>
 
