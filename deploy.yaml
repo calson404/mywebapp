@@ -78,6 +78,7 @@
         dest: "{{ war_dest }}"
         url_username: "admin"          # <-- ADD YOUR NEXUS USERNAME HERE
         url_password: "Realcalson@123" # <-- ADD YOUR NEXUS PASSWORD HERE
+        force_basic_auth: yes          # <-- ADD THIS EXACT LINE
         force: yes
         mode: '0644'
         timeout: 30
