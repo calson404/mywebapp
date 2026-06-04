@@ -31,5 +31,27 @@ pipeline {
                 sh 'echo backupArtifacts in nexus'
             }
         }
+
+stage('Deploy to Tomcat via Ansible') {
+            steps {
+                script {
+                    echo "🚀 Starting Ansible Deployment..."
+                    
+                    // Creates an inventory file on the fly
+                    // REPLACE the IP below with your actual Tomcat server's public IP
+                    sh '''
+                    echo "[all]" > hosts.ini
+                    echo "<YOUR-TOMCAT-SERVER-PUBLIC-IP> ansible_user=ubuntu ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> hosts.ini
+                    '''
+                    
+                    // Runs your updated deploy.yaml playbook
+                    sh 'ansible-playbook -i hosts.ini deploy.yaml'
+                }
+            }
+        }
+
+
+
+
     }
 }
