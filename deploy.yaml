@@ -8,7 +8,7 @@
     tomcat_install_dir: /opt/tomcat
     tomcat_symlink: /opt/tomcat/latest
     tomcat_download_url: "https://dlcdn.apache.org/tomcat/tomcat-11/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
-    war_download_url: "http://51.20.98.56:8081/repository/dobretech-repo/com/example/myapp/20260604220141/myapp-20260604220141.war" # Ensure this points to your ACTUAL .war file!
+    war_download_url: "http://51.20.98.56:8081/repository/dobretech-repo/com/example/myapp/20260604220141/myapp-20260604220141.war"
     war_dest: "{{ tomcat_symlink }}/webapps/myapp.war"
 
   tasks:
@@ -163,7 +163,7 @@
           <role rolename="admin-gui"/>
           <user username="admin" password="admin123" roles="manager-gui,admin-gui"/>
 
-- name: Allow remote access to Manager app
+    - name: Allow remote access to Manager app
       copy:
         dest: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         content: |
