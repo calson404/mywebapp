@@ -90,7 +90,7 @@
     - name: Fail if file is not a valid archive
       fail:
         msg: "The WAR file is corrupted!"
-      when: "'Zip archive data' not in file_check.stdout"
+      when: "'archive data' not in file_check.stdout"
 
     - name: Configure Tomcat Manager Users
       blockinfile:
