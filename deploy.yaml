@@ -58,6 +58,24 @@
         group: "{{ tomcat_group }}"
         recurse: yes
 
+  - name: Download WAR file from Nexus
+      get_url:
+        url: "{{ war_download_url }}"
+        dest: "/opt/tomcat/apache-tomcat-11.0.22/webapps/myapp.war"
+        force: yes  # This forces a fresh download every time
+        mode: '0644'
+
+        - name: Verify WAR file integrity
+      shell: "file /opt/tomcat/apache-tomcat-11.0.22/webapps/myapp.war"
+      register: file_check
+
+    - name: Fail if file is not a valid archive
+      fail:
+        msg: "The WAR file is corrupted!"
+      when: "'Zip archive data' not in file_check.stdout"
+
+        
+
     - name: Create symlink to Tomcat
       file:
         src: "{{ tomcat_install_dir }}/apache-tomcat-{{ tomcat_version }}"
