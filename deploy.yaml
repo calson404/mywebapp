@@ -114,6 +114,19 @@
         - "{{ tomcat_install_dir }}/jmx_exporter_config.yaml"
         - "{{ tomcat_install_dir }}/jmx_prometheus_javaagent-0.20.0.jar"
 
+
+        - name: Change Tomcat port to 8082
+      lineinfile:
+        path: /opt/tomcat/latest/conf/server.xml
+        regexp: 'port="8080"'
+        replace: 'port="8082"'
+      notify: Restart Tomcat
+
+
+
+
+        
+
     - name: Create Tomcat systemd service
       copy:
         dest: /etc/systemd/system/tomcat.service
