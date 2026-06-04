@@ -9,7 +9,7 @@
     tomcat_install_dir: /opt/tomcat
     tomcat_symlink: /opt/tomcat/latest
     tomcat_download_url: "https://dlcdn.apache.org/tomcat/tomcat-11/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
-    war_download_url: "http://51.20.98.56:8081/repository/dobretech-repo/com/example/myapp/1.0/myapp-1.0.war"
+    war_download_url: "http://51.20.98.56:8081/repository/dobretech-repo/"
     war_dest: "{{ tomcat_symlink }}/webapps/myapp.war"
 
   tasks:
