@@ -161,6 +161,33 @@
           WantedBy=multi-user.target
       notify: Reload systemd
 
+        - name: Configure Tomcat Manager Users
+      blockinfile:
+        path: /opt/tomcat/latest/conf/tomcat-users.xml
+        marker: ""
+        insertbefore: "</tomcat-users>"
+        block: |
+          <role rolename="manager-gui"/>
+          <role rolename="admin-gui"/>
+          <user username="admin" password="admin123" roles="manager-gui,admin-gui"/>
+
+          - name: Allow remote access to Manager app
+      replace:
+        path: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
+        regexp: '(<Valve className="org\.apache\.catalina\.valves\.RemoteAddrValve".*?\/>)'
+        replace: ''
+
+        - name: Allow remote access to Host Manager app
+      replace:
+        path: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+        regexp: '(<Valve className="org\.apache\.catalina\.valves\.RemoteAddrValve".*?\/>)'
+        replace: ''
+      notify: Restart Tomcat
+
+
+
+      
+
     - name: Enable and start Tomcat service
       systemd:
         name: tomcat
