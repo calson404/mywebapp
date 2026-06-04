@@ -76,6 +76,8 @@
       get_url:
         url: "{{ war_download_url }}"
         dest: "{{ war_dest }}"
+        url_username: "admin"          # <-- ADD YOUR NEXUS USERNAME HERE
+        url_password: "Realcalson@123" # <-- ADD YOUR NEXUS PASSWORD HERE
         force: yes
         mode: '0644'
         timeout: 30
