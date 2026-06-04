@@ -163,17 +163,23 @@
           <role rolename="admin-gui"/>
           <user username="admin" password="admin123" roles="manager-gui,admin-gui"/>
 
-    - name: Allow remote access to Manager app
-      replace:
-        path: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
-        regexp: '(<Valve className="org\.apache\.catalina\.valves\.RemoteAddrValve".*?\/>)'
-        replace: ''
+- name: Allow remote access to Manager app
+      copy:
+        dest: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
+        content: |
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Context antiResourceLocking="false" privileged="true" >
+            <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor" sameSiteCookies="strict" />
+          </Context>
 
     - name: Allow remote access to Host Manager app
-      replace:
-        path: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
-        regexp: '(<Valve className="org\.apache\.catalina\.valves\.RemoteAddrValve".*?\/>)'
-        replace: ''
+      copy:
+        dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+        content: |
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Context antiResourceLocking="false" privileged="true" >
+            <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor" sameSiteCookies="strict" />
+          </Context>
       notify: Restart Tomcat
 
     - name: Enable and start Tomcat service
